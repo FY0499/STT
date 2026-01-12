@@ -561,7 +561,7 @@ NOW ANALYZE WITH FULL SPEED FLEXIBILITY:"""
             arabic = self.translate_to_arabic(english, emotion)
             audio_bytes = self.generate_emotional_audio_bytes(arabic, emotion, emotion_intensity)
             text_bytes = self.generate_text_file(arabic, emotion)
-            detailed_report = self.generate_detailed_analysis_report(result, arabic, english)
+            # detailed_report = self.generate_detailed_analysis_report(result, arabic, english)
             
             # report_saved = False
             # if save_report_locally and detailed_report:
