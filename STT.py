@@ -192,32 +192,32 @@ Now analyze the video:"""
         
         return annotated
     
-    def draw_landmarks_live(self, frame):
-        rgb_frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
-        annotated = frame.copy()
+    # def draw_landmarks_live(self, frame):
+    #     rgb_frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
+    #     annotated = frame.copy()
         
-        hand_results = self.hands.process(rgb_frame)
-        if hand_results.multi_hand_landmarks:
-            for hand_landmarks in hand_results.multi_hand_landmarks:
-                self.mp_draw.draw_landmarks(
-                    annotated,
-                    hand_landmarks,
-                    self.mp_hands.HAND_CONNECTIONS,
-                    self.mp_draw.DrawingSpec(color=(0, 255, 0), thickness=2, circle_radius=2),
-                    self.mp_draw.DrawingSpec(color=(0, 255, 0), thickness=2)
-                )
+    #     hand_results = self.hands.process(rgb_frame)
+    #     if hand_results.multi_hand_landmarks:
+    #         for hand_landmarks in hand_results.multi_hand_landmarks:
+    #             self.mp_draw.draw_landmarks(
+    #                 annotated,
+    #                 hand_landmarks,
+    #                 self.mp_hands.HAND_CONNECTIONS,
+    #                 self.mp_draw.DrawingSpec(color=(0, 255, 0), thickness=2, circle_radius=2),
+    #                 self.mp_draw.DrawingSpec(color=(0, 255, 0), thickness=2)
+    #             )
         
-        face_results = self.face_mesh.process(rgb_frame)
-        if face_results.multi_face_landmarks:
-            for face_landmarks in face_results.multi_face_landmarks:
-                h, w, _ = annotated.shape
-                key_points = [33, 133, 362, 263, 70, 300, 61, 291]
-                for idx in key_points:
-                    lm = face_landmarks.landmark[idx]
-                    x, y = int(lm.x * w), int(lm.y * h)
-                    cv2.circle(annotated, (x, y), 2, (255, 0, 0), -1)
+    #     face_results = self.face_mesh.process(rgb_frame)
+    #     if face_results.multi_face_landmarks:
+    #         for face_landmarks in face_results.multi_face_landmarks:
+    #             h, w, _ = annotated.shape
+    #             key_points = [33, 133, 362, 263, 70, 300, 61, 291]
+    #             for idx in key_points:
+    #                 lm = face_landmarks.landmark[idx]
+    #                 x, y = int(lm.x * w), int(lm.y * h)
+    #                 cv2.circle(annotated, (x, y), 2, (255, 0, 0), -1)
         
-        return annotated
+    #     return annotated
     
     def create_video_from_frames(self, frames, fps=15):
         if not frames or len(frames) == 0:
